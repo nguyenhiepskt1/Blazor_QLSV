@@ -1,0 +1,58 @@
+﻿@page "/monhoc"
+@using QLSVWasm.Components
+
+<h3>Môn học</h3>
+
+@if (MonHocs == null)
+{
+<Loading></Loading>
+}
+else
+{
+    <div class="row">
+        <EditForm Model="@MonHocSearch" OnSubmit=@SearchForm>
+            <div class="row">
+                <div class="col">
+                    <label>Tên môn học</label>
+                    <InputText class="form-control" @bind-Value="MonHocSearch.TenMonHoc"></InputText>
+                </div>
+
+                <div class="col" style="padding-top:32px">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col" style="padding-top:32px">
+                    <a href="/monhocCreate" class="btn btn-success">Thêm mới</a>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+<div class="row mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Tên môn học
+                </th>
+                <th>
+                    Số tín chỉ
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in MonHocs)
+            {
+                <tr>
+                    <td>@item.TenMonHoc</td>
+                    <td>@item.SoTinChi</td>
+                    <td>
+                        <a href="/monhocDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
+                        <a href="/monhocEdit/@item.Id" class="btn btn-warning">Sửa</a>
+                        <a href="/monhocEdit/@item.Id" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

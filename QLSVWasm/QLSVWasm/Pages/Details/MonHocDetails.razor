@@ -1,0 +1,37 @@
+﻿@page "/monhocDetails/{MonHocID}"
+@using QLSVWasm.Services
+@using QLSV.Model;
+@using QLSVWasm.Components;
+
+@inject IMonHocApiClient MonHocApiClient
+
+@if (MonHoc == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <h3>Môn học: @MonHoc.TenMonHoc</h3>
+    <table class="table">
+        <tr>
+            <td>Tên môn học</td>
+            <td>@MonHoc.TenMonHoc</td>
+        </tr>
+        <tr>
+            <td>Số tín chỉ</td>
+            <td>@MonHoc.SoTinChi</td>
+        </tr>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string MonHocID { get; set; }
+
+    private MonHocDTO MonHoc { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        MonHoc = await MonHocApiClient.GetMonHocDetail(MonHocID);
+    }
+}

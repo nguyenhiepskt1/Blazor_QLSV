@@ -1,0 +1,67 @@
+﻿@page "/diemEdit/{DiemID}"
+@using QLSV.Model
+@using QLSVWasm.Services
+@using QLSVWasm.Components
+
+@inject IDiemApiClient DiemApiClient;
+@inject NavigationManager NavigationManager;
+@if (Diem == null)
+{
+    <Loading />
+}
+else
+{
+    <h3>Sửa điểm</h3>
+
+    <EditForm Model="Diem" OnValidSubmit="SubmitDiem">
+        <DataAnnotationsValidator />
+        <div class="form-group">
+            <label for="HocKy">Học kỳ</label>
+            <InputNumber class="form-control" @bind-Value="Diem.HocKy"></InputNumber>
+            <small id="HocKyHelp" class="form-text text-muted">Hãy nhập học kỳ.</small>
+        </div>
+        <div class="form-group">
+            <label for="DiemGiuaKy">Điểm giữa kỳ</label>
+            <InputNumber class="form-control" @bind-Value="Diem.DiemGiuaKy"></InputNumber>
+            <small id="DiemGiuaKyHelp" class="form-text text-muted">Hãy nhập điểm giữa kỳ.</small>
+        </div>
+        <div class="form-group">
+            <label for="DiemCuoiKy">Điểm cuối kỳ</label>
+            <InputNumber class="form-control" @bind-Value="Diem.DiemCuoiKy"></InputNumber>
+            <small id="DiemCuoiKyHelp" class="form-text text-muted">Hãy nhập điểm cuối kỳ.</small>
+        </div>
+        <div class="form-group">
+            <label for="DiemTongKet">Điểm tổng kết</label>
+            <InputNumber class="form-control" @bind-Value="Diem.DiemTongKet"></InputNumber>
+            <small id="DiemTongKetHelp" class="form-text text-muted">Hãy nhập điểm tổng kết.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public string DiemID { get; set; }
+
+    private DiemUpdateRequest Diem;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var diemDTO = await DiemApiClient.GetDiemDetail(DiemID);
+        Diem = new DiemUpdateRequest();
+        Diem.HocKy = diemDTO.HocKy;
+        Diem.DiemGiuaKy = diemDTO.DiemGiuaKy;
+        Diem.DiemCuoiKy = diemDTO.DiemCuoiKy;
+        Diem.DiemTongKet = diemDTO.DiemTongKet;
+    }
+
+    private async Task SubmitDiem(EditContext context)
+    {
+        var result = await DiemApiClient.UpdateDiem(Guid.Parse(DiemID), Diem);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/diem");
+        }
+    }
+}

@@ -1,0 +1,47 @@
+﻿@page "/diemCreate"
+@using QLSV.Model
+@using QLSVWasm.Services
+
+@inject IDiemApiClient DiemApiClient;
+@inject NavigationManager NavigationManager;
+
+<h3>Thêm điểm</h3>
+
+<EditForm Model="Diem" OnValidSubmit="SubmitDiem">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="HocKy">Học kỳ</label>
+        <InputNumber class="form-control" @bind-Value="Diem.HocKy"></InputNumber>
+        <small id="HocKyHelp" class="form-text text-muted">Hãy nhập học kỳ.</small>
+    </div>
+    <div class="form-group">
+        <label for="DiemGiuaKy">Điểm giữa kỳ</label>
+        <InputNumber class="form-control" @bind-Value="Diem.DiemGiuaKy"></InputNumber>
+        <small id="DiemGiuaKyHelp" class="form-text text-muted">Hãy nhập điểm giữa kỳ.</small>
+    </div>
+    <div class="form-group">
+        <label for="DiemCuoiKy">Điểm cuối kỳ</label>
+        <InputNumber class="form-control" @bind-Value="Diem.DiemCuoiKy"></InputNumber>
+        <small id="DiemCuoiKyHelp" class="form-text text-muted">Hãy nhập điểm cuối kỳ.</small>
+    </div>
+    <div class="form-group">
+        <label for="DiemTongKet">Điểm tổng kết</label>
+        <InputNumber class="form-control" @bind-Value="Diem.DiemTongKet"></InputNumber>
+        <small id="DiemTongKetHelp" class="form-text text-muted">Hãy nhập điểm tổng kết.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private DiemCreateRequest Diem = new DiemCreateRequest();
+
+    private async Task SubmitDiem(EditContext context)
+    {
+        var result = await DiemApiClient.CreateDiem(Diem);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/diem");
+        }
+    }
+}

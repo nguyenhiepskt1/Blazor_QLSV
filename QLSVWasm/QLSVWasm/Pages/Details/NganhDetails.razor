@@ -1,0 +1,33 @@
+﻿@page "/nganhDetails/{NganhID}"
+@using QLSVWasm.Services
+@using QLSV.Model;
+@using QLSVWasm.Components;
+
+@inject INganhApiClient NganhApiClient
+
+@if (Nganh == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <h3>Ngành: @Nganh.TenNganh</h3>
+    <table class="table">
+        <tr>
+            <td>Tên ngành</td>
+            <td>@Nganh.TenNganh</td>
+        </tr>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string NganhID { get; set; }
+
+    private NganhDTO Nganh { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Nganh = await NganhApiClient.GetNganhDetail(NganhID);
+    }
+}

@@ -1,0 +1,37 @@
+﻿@page "/lopDetails/{LopID}"
+@using QLSVWasm.Services
+@using QLSV.Model;
+@using QLSVWasm.Components;
+
+@inject ILopApiClient LopApiClient
+
+@if (Lop == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <h3>Lớp: @Lop.TenLop</h3>
+    <table class="table">
+        <tr>
+            <td>Tên lớp</td>
+            <td>@Lop.TenLop</td>
+        </tr>
+        <tr>
+            <td>Ngành</td>
+            <td>@Lop.Nganh</td>
+        </tr>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string LopID { get; set; }
+
+    private LopDTO Lop { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Lop = await LopApiClient.GetLopDetail(LopID);
+    }
+}

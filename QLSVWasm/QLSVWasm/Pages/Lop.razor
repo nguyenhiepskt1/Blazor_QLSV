@@ -1,0 +1,58 @@
+﻿@page "/lop"
+@using QLSVWasm.Components
+
+<h3>Lớp</h3>
+
+@if (Lops == null)
+{
+<Loading></Loading>
+}
+else
+{
+    <div class="row">
+        <EditForm Model="@LopSearch" OnSubmit=@SearchForm>
+            <div class="row">
+                <div class="col">
+                    <label>Tên lớp</label>
+                    <InputText class="form-control" @bind-Value="LopSearch.TenLop"></InputText>
+                </div>
+
+                <div class="col" style="padding-top:32px">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col" style="padding-top:32px">
+                    <a href="/lopCreate" class="btn btn-success">Thêm mới</a>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+<div class="row mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Tên lớp
+                </th>
+                <th>
+                    Ngành
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Lops)
+            {
+                <tr>
+                    <td>@item.TenLop</td>
+                    <td>@item.Nganh</td>
+                    <td>
+                        <a href="/lopDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
+                        <a href="/lopEdit/@item.Id" class="btn btn-warning">Sửa</a>
+                        <a href="/lopEdit/@item.Id" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

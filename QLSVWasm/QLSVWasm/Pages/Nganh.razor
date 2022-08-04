@@ -1,0 +1,54 @@
+﻿@page "/nganh"
+@using QLSVWasm.Components
+
+<h3>Ngành</h3>
+
+@if (Nganhs == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <div class="row">
+        <EditForm Model="@NganhSearch" OnSubmit=@SearchForm>
+            <div class="row">
+                <div class="col">
+                    <label>Tên ngành</label>
+                    <InputText class="form-control" @bind-Value="NganhSearch.TenNganh"></InputText>
+                </div>
+
+                <div class="col" style="padding-top:32px">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col" style="padding-top:32px">
+                    <a href="/nganhCreate" class="btn btn-success">Thêm mới</a>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+    <div class="row mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên ngành
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Nganhs)
+                {
+                    <tr>
+                        <td>@item.TenNganh</td>
+                        <td>
+                            <a href="/nganhDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
+                            <a href="/nganhEdit/@item.Id" class="btn btn-warning">Sửa</a>
+                            <a href="/nganhEdit/@item.Id" class="btn btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,50 @@
+﻿@page "/lopEdit/{LopID}"
+@using QLSV.Model
+@using QLSVWasm.Services
+@using QLSVWasm.Components
+
+@inject ILopApiClient LopApiClient;
+@inject NavigationManager NavigationManager;
+@if (Lop == null)
+{
+    <Loading />
+}
+else
+{
+    <h3>Sửa lớp : @Lop.TenLop</h3>
+
+    <EditForm Model="Lop" OnValidSubmit="SubmitLop">
+        <DataAnnotationsValidator />
+        <div class="form-group">
+            <label for="TenLop">Tên lớp</label>
+            <InputText class="form-control" @bind-Value="Lop.TenLop"></InputText>
+            <ValidationMessage For="()=>Lop.TenLop"></ValidationMessage>
+            <small id="TenLopHelp" class="form-text text-muted">Hãy nhập tên lớp.</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public string LopID { get; set; }
+
+    private LopUpdateRequest Lop;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var lopDTO = await LopApiClient.GetLopDetail(LopID);
+        Lop = new LopUpdateRequest();
+        Lop.TenLop = lopDTO.TenLop;
+    }
+
+    private async Task SubmitLop(EditContext context)
+    {
+        var result = await LopApiClient.UpdateLop(Guid.Parse(LopID), Lop);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/lop");
+        }
+    }
+}

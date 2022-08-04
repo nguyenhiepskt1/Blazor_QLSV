@@ -1,0 +1,93 @@
+﻿@page "/sinhvien"
+@using QLSVWasm.Components
+
+<h3>Sinh viên</h3>
+
+@if (SinhViens == null || Users == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <div class="row">
+        <EditForm Model="@SinhVienSearch" OnSubmit=@SearchForm>
+            <div class="row">
+                <div class="col">
+                    <label>Tên sinh viên</label>
+                    <InputText class="form-control" @bind-Value="SinhVienSearch.TenSinhVien"></InputText>
+                </div>
+
+                <div class="col">
+                    <label>User</label>
+                    <InputSelect class="form-control" @bind-Value="SinhVienSearch.UserId">
+                        <option>Chọn tên User</option>
+                        @foreach (var user in Users)
+                            {
+                            <option value="@user.Id">@user.HoTen</option>
+                            }
+                    </InputSelect>
+                </div>
+
+                <div class="col" style="padding-top:32px">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col" style="padding-top:32px">
+                    <a href="/sinhvienCreate" class="btn btn-success">Thêm mới</a>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+    <div class="row mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên sinh viên
+                    </th>
+                    <th>
+                        Tuổi
+                    </th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Giới tính
+                    </th>
+                    <th>
+                        Lớp
+                    </th>
+                    <th>
+                        User
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in SinhViens)
+                {
+                    <tr>
+                        <td>@item.TenSinhVien</td>
+                        <td>@item.Tuoi</td>
+                        <td>@item.DiaChi</td>
+                        <td>@item.Email</td>
+                        <td>@item.SDT</td>
+                        <td>@(item.GioiTinh ? "Nam" : "Nữ")</td>
+                        <td>@item.Lop</td>
+                        <td>@item.UserName</td>
+                        <td>
+                            <a href="/sinhvienDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
+                            <a href="/sinhvienEdit/@item.Id" class="btn btn-warning">Sửa</a>
+                            <a href="/sinhvienEdit/@item.Id" class="btn btn-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

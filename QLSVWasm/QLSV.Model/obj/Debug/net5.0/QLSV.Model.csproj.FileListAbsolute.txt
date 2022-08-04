@@ -1,0 +1,12 @@
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\QLSV.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\QLSV.Model.AssemblyInfoInputs.cache
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\QLSV.Model.AssemblyInfo.cs
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\QLSV.Model.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\bin\Debug\net5.0\QLSV.Model.deps.json
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\bin\Debug\net5.0\QLSV.Model.dll
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\bin\Debug\net5.0\ref\QLSV.Model.dll
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\bin\Debug\net5.0\QLSV.Model.pdb
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\QLSV.Model.dll
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\ref\QLSV.Model.dll
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\QLSV.Model.pdb
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSV.Model\obj\Debug\net5.0\QLSV.Model.csproj.AssemblyReference.cache

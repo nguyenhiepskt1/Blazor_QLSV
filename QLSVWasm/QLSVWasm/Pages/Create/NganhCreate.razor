@@ -1,0 +1,33 @@
+﻿@page "/nganhCreate"
+@using QLSV.Model
+@using QLSVWasm.Services
+
+@inject INganhApiClient NganhApiClient;
+@inject NavigationManager NavigationManager;
+
+<h3>Thêm ngành</h3>
+
+<EditForm Model="Nganh" OnValidSubmit="SubmitNganh">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="TenNganh">Tên ngành</label>
+        <InputText class="form-control" @bind-Value="Nganh.TenNganh"></InputText>
+        <ValidationMessage For="()=>Nganh.TenNganh"></ValidationMessage>
+        <small id="TenNganhHelp" class="form-text text-muted">Hãy nhập tên ngành.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private NganhCreateRequest Nganh = new NganhCreateRequest();
+
+    private async Task SubmitNganh(EditContext context)
+    {
+        var result = await NganhApiClient.CreateNganh(Nganh);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/nganh");
+        }
+    }
+}

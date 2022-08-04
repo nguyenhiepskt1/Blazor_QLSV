@@ -1,0 +1,33 @@
+﻿@page "/lopCreate"
+@using QLSV.Model
+@using QLSVWasm.Services
+
+@inject ILopApiClient LopApiClient;
+@inject NavigationManager NavigationManager;
+
+<h3>Thêm lớp</h3>
+
+<EditForm Model="Lop" OnValidSubmit="SubmitLop">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="TenLop">Tên lớp</label>
+        <InputText class="form-control" @bind-Value="Lop.TenLop"></InputText>
+        <ValidationMessage For="()=>Lop.TenLop"></ValidationMessage>
+        <small id="TenLopHelp" class="form-text text-muted">Hãy nhập tên lớp.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private LopCreateRequest Lop = new LopCreateRequest();
+
+    private async Task SubmitLop(EditContext context)
+    {
+        var result = await LopApiClient.CreateLop(Lop);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/lop");
+        }
+    }
+}

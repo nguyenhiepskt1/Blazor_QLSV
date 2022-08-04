@@ -1,0 +1,66 @@
+﻿@page "/diem"
+@using QLSVWasm.Components
+
+<h3>Điểm</h3>
+
+@if (Diems == null)
+{
+<Loading></Loading>
+}
+else
+{
+    <div class="row">
+        <EditForm Model="@DiemSearch" OnSubmit=@SearchForm>
+            <div class="row">
+                <div class="col">
+                    <label>Học kỳ</label>
+                    <InputNumber class="form-control" @bind-Value="DiemSearch.HocKy"></InputNumber>
+                </div>
+
+                <div class="col" style="padding-top:32px">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col" style="padding-top:32px">
+                    <a href="/diemCreate" class="btn btn-success">Thêm mới</a>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+<div class="row mt-4">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Học kỳ
+                </th>
+                <th>
+                    Điểm giữa kỳ
+                </th>
+                <th>
+                    Điểm cuối kỳ
+                </th>
+                <th>
+                    Điểm tổng kết
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Diems)
+            {
+                <tr>
+                    <td>@item.HocKy</td>
+                    <td>@item.DiemGiuaKy</td>
+                    <td>@item.DiemCuoiKy</td>
+                    <td>@item.DiemTongKet</td>
+                    <td>
+                        <a href="/diemDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
+                        <a href="/diemEdit/@item.Id" class="btn btn-warning">Sửa</a>
+                        <a href="/diemEdit/@item.Id" class="btn btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

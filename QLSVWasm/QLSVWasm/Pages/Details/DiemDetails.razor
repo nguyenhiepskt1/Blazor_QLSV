@@ -1,0 +1,46 @@
+﻿@page "/diemDetails/{DiemID}"
+@using QLSVWasm.Services
+@using QLSV.Model;
+@using QLSVWasm.Components;
+
+@inject IDiemApiClient DiemApiClient
+
+@if (Diem == null)
+{
+    <Loading></Loading>
+}
+else
+{
+    <h3>Điểm</h3>
+
+    <table class="table">
+        <tr>
+            <td>Học kỳ</td>
+            <td>@Diem.HocKy</td>
+        </tr>
+        <tr>
+            <td>Điểm giữa kỳ</td>
+            <td>@Diem.DiemGiuaKy</td>
+        </tr>
+        <tr>
+            <td>Điểm cuối kỳ</td>
+            <td>@Diem.DiemCuoiKy</td>
+        </tr>
+        <tr>
+            <td>Điểm tổng kết</td>
+            <td>@Diem.DiemTongKet</td>
+        </tr>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string DiemID { get; set; }
+
+    private DiemDTO Diem { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Diem = await DiemApiClient.GetDiemDetail(DiemID);
+    }
+}

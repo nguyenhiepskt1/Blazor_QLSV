@@ -1,0 +1,39 @@
+﻿@page "/monhocCreate"
+@using QLSV.Model
+@using QLSVWasm.Services
+
+@inject IMonHocApiClient MonHocApiClient ;
+@inject NavigationManager NavigationManager;
+
+<h3>Thêm môn học</h3>
+
+<EditForm Model="MonHoc" OnValidSubmit="SubmitMonHoc">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label for="TenMonHoc">Tên môn học</label>
+        <InputText class="form-control" @bind-Value="MonHoc.TenMonHoc"></InputText>
+        <ValidationMessage For="()=>MonHoc.TenMonHoc"></ValidationMessage>
+        <small id="TenMonHocHelp" class="form-text text-muted">Hãy nhập tên môn học.</small>
+    </div>
+    <div class="form-group">
+        <label for="SoTinChi">Số tín chỉ</label>
+        <InputNumber class="form-control" @bind-Value="MonHoc.SoTinChi"></InputNumber>
+        <ValidationMessage For="()=>MonHoc.SoTinChi"></ValidationMessage>
+        <small id="SoTinChiHelp" class="form-text text-muted">Hãy nhập số tín chỉ.</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private MonHocCreateRequest MonHoc = new MonHocCreateRequest();
+
+    private async Task SubmitMonHoc(EditContext context)
+    {
+        var result = await MonHocApiClient.CreateMonHoc(MonHoc);
+        if (result)
+        {
+            NavigationManager.NavigateTo("/monhoc");
+        }
+    }
+}
