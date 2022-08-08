@@ -24,6 +24,12 @@ namespace QLSVWasm.Services
             return result.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteLop(Guid id)
+        {
+            var result = await _httpClient.DeleteAsync($"/api/lops/{id}");
+            return result.IsSuccessStatusCode;
+        }
+
         public async Task<LopDTO> GetLopDetail(string id)
         {
             var result = await _httpClient.GetFromJsonAsync<LopDTO>($"/api/lops/{id}");

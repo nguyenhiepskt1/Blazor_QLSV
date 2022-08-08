@@ -24,6 +24,12 @@ namespace QLSVWasm.Services
             return result.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteMonHoc(Guid id)
+        {
+            var result = await _httpClient.DeleteAsync($"/api/monhocs/{id}");
+            return result.IsSuccessStatusCode;
+        }
+
         public async Task<MonHocDTO> GetMonHocDetail(string id)
         {
             var result = await _httpClient.GetFromJsonAsync<MonHocDTO>($"/api/monhocs/{id}");

@@ -92,5 +92,26 @@ namespace QLSVAPI.Controllers
                 Nganh = lops.Nganh
             });
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var lops = await _lopReponsitory.GetById(id);
+            if (lops == null)
+            {
+                return NotFound($"{id} không tồn tại");
+            }
+            else
+            {
+                await _lopReponsitory.Delete(lops);
+                return Ok(new LopDTO()
+                {
+                    Id = lops.Id,
+                    TenLop = lops.TenLop,
+                    Nganh = lops.Nganh
+                });
+            }
+        }
     }
 }

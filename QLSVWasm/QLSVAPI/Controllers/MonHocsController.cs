@@ -92,5 +92,26 @@ namespace QLSVAPI.Controllers
                 SoTinChi = monhocs.SoTinChi
             });
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete ([FromRoute] Guid id)
+        {
+            var monhocs = await _monHocReponsitory.GetById(id);
+            if (monhocs == null)
+            {
+                return NotFound($"{id} không tồn tại");
+            }
+            else
+            {
+                await _monHocReponsitory.Delete(monhocs);
+                return Ok(new MonHocDTO()
+                {
+                    Id = monhocs.Id,
+                    TenMonHoc = monhocs.TenMonHoc,
+                    SoTinChi = monhocs.SoTinChi
+                });
+            }
+        }
     }
 }

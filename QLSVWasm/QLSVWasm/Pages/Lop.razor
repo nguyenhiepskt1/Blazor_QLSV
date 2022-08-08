@@ -5,7 +5,7 @@
 
 @if (Lops == null)
 {
-<Loading></Loading>
+    <Loading></Loading>
 }
 else
 {
@@ -26,33 +26,38 @@ else
             </div>
         </EditForm>
     </div>
-<div class="row mt-4">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Tên lớp
-                </th>
-                <th>
-                    Ngành
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Lops)
-            {
+    <div class="row mt-4">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.TenLop</td>
-                    <td>@item.Nganh</td>
-                    <td>
-                        <a href="/lopDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
-                        <a href="/lopEdit/@item.Id" class="btn btn-warning">Sửa</a>
-                        <a href="/lopEdit/@item.Id" class="btn btn-danger">Xóa</a>
-                    </td>
+                    <th>
+                        Tên lớp
+                    </th>
+                    <th>
+                        Ngành
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var item in Lops)
+                {
+                    <tr>
+                        <td>@item.TenLop</td>
+                        <td>@item.Nganh</td>
+                        <td>
+                            <a href="/lopDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
+                            <a href="/lopEdit/@item.Id" class="btn btn-warning">Sửa</a>
+                            <button class="btn btn-danger" @onclick="() => OnDeleteLop(item.Id)">Xóa</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <Confirmation ConfirmationMessage="Bạn có chắc chắn muốn xóa?"
+                  ConfirmationTitle="Xóa lớp"
+                  @ref="DeleteConfirmation"
+                  ConfirmationChanged="OnConfirmDeleteLop">
+    </Confirmation>
 }

@@ -24,6 +24,12 @@ namespace QLSVWasm.Services
             return result.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteNganh(Guid id)
+        {
+            var result = await _httpClient.DeleteAsync($"/api/nganhs/{id}");
+            return result.IsSuccessStatusCode;
+        }
+
         public async Task<NganhDTO> GetNganhDetail(string id)
         {
             var result = await _httpClient.GetFromJsonAsync<NganhDTO>($"/api/nganhs/{id}");

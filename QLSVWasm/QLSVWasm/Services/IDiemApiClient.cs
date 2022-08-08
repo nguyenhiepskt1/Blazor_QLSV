@@ -13,5 +13,7 @@ namespace QLSVWasm.Services
         Task<DiemDTO> GetDiemDetail(string id);
         Task<bool> CreateDiem(DiemCreateRequest request);
         Task<bool> UpdateDiem(Guid id, DiemUpdateRequest request);
+        Task<bool> DeleteDiem(Guid id);
+
     }
 }

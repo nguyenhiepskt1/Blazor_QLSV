@@ -41,7 +41,6 @@ C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Microsoft.I
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
@@ -67,3 +66,4 @@ C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Microsoft.E
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Polly.dll
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\QLSV.Model.dll
 C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\QLSV.Model.pdb
+C:\Users\nguye\Desktop\Project C#6\QLSVWasm\QLSVAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

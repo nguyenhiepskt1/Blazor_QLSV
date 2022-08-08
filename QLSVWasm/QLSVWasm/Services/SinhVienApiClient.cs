@@ -24,6 +24,12 @@ namespace QLSVWasm.Services
             return result.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteSV(Guid id)
+        {
+            var result = await _httpClient.DeleteAsync($"/api/sinhviens/{id}");
+            return result.IsSuccessStatusCode;
+        }
+
         public async Task<SinhVienDTO> GetSVDetail(string id)
         {
             var result = await _httpClient.GetFromJsonAsync<SinhVienDTO>($"/api/sinhviens/{id}");

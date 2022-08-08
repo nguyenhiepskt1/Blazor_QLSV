@@ -102,5 +102,28 @@ namespace QLSVAPI.Controllers
                 DiemTongKet = diems.DiemTongKet,
             });
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var diems = await _diemReponsitory.GetById(id);
+            if (diems == null)
+            {
+                return NotFound($"{id} không tồn tại");
+            }
+            else
+            {
+                await _diemReponsitory.Delete(diems);
+                return Ok(new DiemDTO()
+                {
+                    Id = diems.Id,
+                    HocKy = diems.HocKy,
+                    DiemGiuaKy = diems.DiemGiuaKy,
+                    DiemCuoiKy = diems.DiemCuoiKy,
+                    DiemTongKet = diems.DiemTongKet,
+                });
+            }
+        }
     }
 }

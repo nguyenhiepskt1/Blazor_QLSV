@@ -13,5 +13,6 @@ namespace QLSVWasm.Services
         Task<SinhVienDTO> GetSVDetail(string id);
         Task<bool> CreateSV(SinhVienCreateRequest request);
         Task<bool> UpdateSV(Guid id,SinhVienUpdateRequest request);
+        Task<bool> DeleteSV(Guid id);
     }
 }

@@ -13,5 +13,6 @@ namespace QLSVWasm.Services
         Task<LopDTO> GetLopDetail(string id);
         Task<bool> CreateLop(LopCreateRequest request);
         Task<bool> UpdateLop(Guid id, LopUpdateRequest request);
+        Task<bool> DeleteLop(Guid id);
     }
 }

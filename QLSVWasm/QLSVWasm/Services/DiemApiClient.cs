@@ -24,6 +24,12 @@ namespace QLSVWasm.Services
             return result.IsSuccessStatusCode;
         }
 
+        public async Task<bool> DeleteDiem(Guid id)
+        {
+            var result = await _httpClient.DeleteAsync($"/api/diems/{id}");
+            return result.IsSuccessStatusCode;
+        }
+
         public async Task<DiemDTO> GetDiemDetail(string id)
         {
             var result = await _httpClient.GetFromJsonAsync<DiemDTO>($"/api/diems/{id}");

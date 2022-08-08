@@ -13,5 +13,6 @@ namespace QLSVWasm.Services
         Task<MonHocDTO> GetMonHocDetail(string id);
         Task<bool> CreateMonHoc(MonHocCreateRequest request);
         Task<bool> UpdateMonHoc(Guid id, MonHocUpdateRequest request);
+        Task<bool> DeleteMonHoc(Guid id);
     }
 }

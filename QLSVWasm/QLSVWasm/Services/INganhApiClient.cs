@@ -13,5 +13,6 @@ namespace QLSVWasm.Services
         Task<NganhDTO> GetNganhDetail(string id);
         Task<bool> CreateNganh(NganhCreateRequest request);
         Task<bool> UpdateNganh(Guid id, NganhUpdateRequest request);
+        Task<bool> DeleteNganh(Guid id);
     }
 }

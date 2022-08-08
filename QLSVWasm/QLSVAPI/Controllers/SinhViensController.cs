@@ -120,5 +120,32 @@ namespace QLSVAPI.Controllers
                 UserId = sinhviens.UserId
             });
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var sinhviens = await _svReponsitory.GetById(id);
+            if (sinhviens == null)
+            {
+                return NotFound($"{id} không tồn tại");
+            }
+            else
+            {
+                await _svReponsitory.Delete(sinhviens);
+                return Ok(new SinhVienDTO()
+                {
+                    Id = sinhviens.Id,
+                    TenSinhVien = sinhviens.TenSinhVien,
+                    Tuoi = sinhviens.Tuoi,
+                    DiaChi = sinhviens.DiaChi,
+                    Email = sinhviens.Email,
+                    SDT = sinhviens.SDT,
+                    GioiTinh = sinhviens.GioiTinh,
+                    Lop = sinhviens.Lop,
+                    UserId = sinhviens.UserId
+                });
+            }
+        }
     }
 }

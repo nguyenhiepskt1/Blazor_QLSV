@@ -5,7 +5,7 @@
 
 @if (Diems == null)
 {
-<Loading></Loading>
+    <Loading></Loading>
 }
 else
 {
@@ -26,41 +26,46 @@ else
             </div>
         </EditForm>
     </div>
-<div class="row mt-4">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Học kỳ
-                </th>
-                <th>
-                    Điểm giữa kỳ
-                </th>
-                <th>
-                    Điểm cuối kỳ
-                </th>
-                <th>
-                    Điểm tổng kết
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Diems)
-            {
+    <div class="row mt-4">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.HocKy</td>
-                    <td>@item.DiemGiuaKy</td>
-                    <td>@item.DiemCuoiKy</td>
-                    <td>@item.DiemTongKet</td>
-                    <td>
-                        <a href="/diemDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
-                        <a href="/diemEdit/@item.Id" class="btn btn-warning">Sửa</a>
-                        <a href="/diemEdit/@item.Id" class="btn btn-danger">Xóa</a>
-                    </td>
+                    <th>
+                        Học kỳ
+                    </th>
+                    <th>
+                        Điểm giữa kỳ
+                    </th>
+                    <th>
+                        Điểm cuối kỳ
+                    </th>
+                    <th>
+                        Điểm tổng kết
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var item in Diems)
+                {
+                    <tr>
+                        <td>@item.HocKy</td>
+                        <td>@item.DiemGiuaKy</td>
+                        <td>@item.DiemCuoiKy</td>
+                        <td>@item.DiemTongKet</td>
+                        <td>
+                            <a href="/diemDetails/@item.Id" class="btn btn-primary">Chi tiết</a>
+                            <a href="/diemEdit/@item.Id" class="btn btn-warning">Sửa</a>
+                            <button class="btn btn-danger" @onclick="() => OnDeleteDiem(item.Id)">Xóa</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <Confirmation ConfirmationMessage="Bạn có chắc chắn muốn xóa?"
+                  ConfirmationTitle="Xóa điểm"
+                  @ref="DeleteConfirmation"
+                  ConfirmationChanged="OnConfirmDeleteDiem">
+    </Confirmation>
 }
